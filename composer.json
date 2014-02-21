@@ -1,0 +1,26 @@
+{
+    "name": "lingualeo/php-dataquery-myarray",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LinguaLeo",
+            "email": "backend@lingualeo.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.lingualeo-funk.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4.0",
+        "lingualeo/php-dataquery": "1.0.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "LinguaLeo\\": "src/"
+        }
+    }
+}
