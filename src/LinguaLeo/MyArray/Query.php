@@ -61,8 +61,7 @@ class Query implements QueryInterface
             return false;
         }
         $indeces = [];
-        foreach ($conditions as $condition) {
-            list($column, $value, $comparison) = $condition;
+        foreach ($conditions as list($column, $value, $comparison)) {
             if (!isset($table[$column])) {
                 throw new QueryException(sprintf('The "%s" column not found', $column));
             }
