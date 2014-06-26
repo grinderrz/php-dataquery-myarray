@@ -250,11 +250,11 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     public function testSelectWithCondition()
     {
         $this->criteria->read(['foo']);
-        $this->criteria->where('foo', 500, Criteria::NOT_EQUAL);
+        $this->criteria->where('foo', 300, Criteria::NOT_EQUAL);
         $this->assertSame(
             [
                 ['foo' => 100],
-                ['foo' => 300]
+                ['foo' => 500]
             ],
             $this->getQueryMock()->select($this->criteria)->many()
         );
@@ -274,16 +274,16 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     public function provideConditions()
     {
         return [
-            [1, Criteria::EQUAL, [1 => ['foo' => 1]]],
-            [1, Criteria::NOT_EQUAL, [0 => ['foo' => null], 2 => ['foo' => 2]]],
-            [1, Criteria::EQUAL_GREATER, [1 => ['foo' => 1], 2 => ['foo' => 2]]],
-            [1, Criteria::EQUAL_LESS, [0 => ['foo' => null], 1 => ['foo' => 1]]],
-            [1, Criteria::GREATER, [2 => ['foo' => 2]]],
-            [1, Criteria::LESS, [0 => ['foo' => null]]],
-            [null, Criteria::IS_NOT_NULL, [1 => ['foo' => 1], 2 => ['foo' => 2]]],
-            [null, Criteria::IS_NULL, [0 => ['foo' => null]]],
-            [[1,3], Criteria::IN, [1 => ['foo' => 1]]],
-            [[1,3], Criteria::NOT_IN, [0 => ['foo' => null], 2 => ['foo' => 2]]]
+            [1, Criteria::EQUAL, [['foo' => 1]]],
+            [1, Criteria::NOT_EQUAL, [['foo' => null], ['foo' => 2]]],
+            [1, Criteria::EQUAL_GREATER, [['foo' => 1], ['foo' => 2]]],
+            [1, Criteria::EQUAL_LESS, [['foo' => null], ['foo' => 1]]],
+            [1, Criteria::GREATER, [['foo' => 2]]],
+            [1, Criteria::LESS, [['foo' => null]]],
+            [null, Criteria::IS_NOT_NULL, [['foo' => 1], ['foo' => 2]]],
+            [null, Criteria::IS_NULL, [['foo' => null]]],
+            [[1,3], Criteria::IN, [['foo' => 1]]],
+            [[1,3], Criteria::NOT_IN, [['foo' => null], ['foo' => 2]]]
         ];
     }
 

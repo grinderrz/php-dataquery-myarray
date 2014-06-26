@@ -60,8 +60,10 @@ class Result implements ResultInterface
     {
         $rows = [];
         foreach ($this->table as $field => $column) {
-            foreach ($column as $i => $value) {
-                $rows[$i][$field] = $value;
+            $j = 0;
+            foreach ($column as $value) {
+                $rows[$j][$field] = $value;
+                $j++;
             }
         }
         return $rows;
