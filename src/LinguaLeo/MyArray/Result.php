@@ -67,6 +67,17 @@ class Result implements ResultInterface
         return $rows;
     }
 
+    public function groupBy($groupField)
+    {
+        $rows = [];
+        foreach ($this->table[$groupField] as $i => $groupValue) {
+            foreach ($this->table as $field => $column) {
+                $rows[$groupValue][$i][$field] = $column[$i];
+            }
+        }
+        return $rows;
+    }
+
     public function one()
     {
         $row = [];

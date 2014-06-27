@@ -321,4 +321,30 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $result->free();
         $this->assertCount(0, $result);
     }
+
+    public function testGroupBy()
+    {
+        $query = new Query([
+            'trololo' => [
+                'foo' => ['a', 'a', 'b', 'b'],
+                'bar' => [10, 11, 20, 21]
+            ]
+        ]);
+        $result = $query->select($this->criteria)->groupBy('foo');
+        $this->assertSame(
+            array_values($result['a']),
+            [
+                ['foo' => 'a', 'bar' => 10],
+                ['foo' => 'a', 'bar' => 11]
+            ]
+        );
+        $this->assertSame(
+            array_values($result['b']),
+            [
+                ['foo' => 'b', 'bar' => 20],
+                ['foo' => 'b', 'bar' => 21]
+            ]
+        );
+    }
+
 }
